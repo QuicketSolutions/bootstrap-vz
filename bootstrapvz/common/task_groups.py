@@ -161,6 +161,7 @@ def get_bootloader_group(manifest):
     from bootstrapvz.common.releases import jessie
     from bootstrapvz.common.releases import stretch
     group = []
+    pnin = manifest.system.get('pnin', None)
     if manifest.system['bootloader'] == 'grub':
         group.extend([grub.AddGrubPackage,
                       grub.InitGrubConfig,
@@ -173,7 +174,7 @@ def get_bootloader_group(manifest):
             group.append(grub.InstallGrub_1_99)
         else:
             group.append(grub.InstallGrub_2)
-        if manifest.release >= stretch:
+        if pnin is False or (pnin is None and manifest.release >= stretch):
             group.append(grub.DisablePNIN)
     if manifest.system['bootloader'] == 'extlinux':
         group.append(extlinux.AddExtlinuxPackage)
