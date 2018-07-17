@@ -162,6 +162,11 @@ system and does not fit under any other section.
 -  ``locale``: The default locale of the system.
    Valid values: Any locale mentioned in ``/etc/locale.gen``
    ``required``
+-  ``pnin``: Enable Persistent Network Interface Naming in the bootloader.
+   Only supported with the ``grub`` and ``extlinux`` bootloaders.
+   Valid values: ``true``, ``false``
+   Default: ``false``
+   ``optional``
 -  ``release``: Defines which debian release should be bootstrapped.
    Valid values: ``wheezy``, ``jessie``, ``stretch``, ``sid``,
    ``oldstable``, ``stable``, ``testing``, ``unstable``

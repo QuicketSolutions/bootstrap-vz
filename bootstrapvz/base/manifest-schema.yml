@@ -59,6 +59,7 @@ properties:
         type: string
         pattern: ^\S+$
       locale: {type: string}
+      pnin: {type: boolean}
       release: {type: string}
       timezone: {type: string}
     required:

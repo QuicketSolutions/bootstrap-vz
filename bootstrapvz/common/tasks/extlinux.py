@@ -4,6 +4,7 @@ from ..tools import log_check_call
 from . import filesystem
 from . import kernel
 from bootstrapvz.base.fs import partitionmaps
+from ..releases import stretch
 import os
 
 
@@ -74,6 +75,12 @@ class ConfigureExtlinuxJessie(Task):
             config_vars['boot_prefix'] = ''
         else:
             config_vars['boot_prefix'] = '/boot'
+
+        pnin = info.manifest.system.get('pnin', None)
+        if pnin is False or (pnin is None and info.manifest.release >= stretch):
+            config_vars['disable_pnin'] = 'net.ifnames=0 biosdevname=0'
+        else:
+            config_vars['disable_pnin'] = ''
 
         extlinux_config = extlinux_config_tpl.format(**config_vars)
 
