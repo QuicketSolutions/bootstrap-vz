@@ -19,7 +19,7 @@ class EBSVolume(Volume):
             'AvailabilityZone': zone,
             'VolumeType': 'gp2',
         }
-        if len(tags) > 0:
+        if tags:
             params['TagSpecifications'] = [{'ResourceType': 'volume', 'Tags': tags}]
 
         if e.encrypted:
